@@ -1,0 +1,26 @@
+// warframe *.toc (table of contents) files
+// contains a mapping of folders and their files along with the respective file offsets and sizes
+
+uint magic <format=hex>; // should be 0x1867C64E
+uint shit; // seems to be always 20?
+
+struct TOCEntry
+{
+    uint64 contentOffset <format=hex>;
+    uint64 unk <bgcolor = cDkYellow>;
+    uint compressedSize;
+    uint size;
+    uint unk <bgcolor = cDkYellow>;
+    uint unk <bgcolor = cDkYellow>;
+    char name[64] <bgcolor = cDkGreen>;
+};
+
+
+local int64 size = FileSize();
+local int entrySize = sizeof( TOCEntry );
+
+while( ( size - entrySize ) > 0 )
+{
+    TOCEntry tocEntry;
+    size -= entrySize;
+}
